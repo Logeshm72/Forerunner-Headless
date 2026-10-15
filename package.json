@@ -1,0 +1,45 @@
+{
+  "name": "forerunner",
+  "version": "1.0.0",
+  "description": "Automated Salesforce Release Update Testing with Agentia Headless",
+  "main": "src/index.js",
+  "bin": {
+    "forerunner": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "mcp": "node mcp-server.js"
+  },
+  "keywords": [
+    "salesforce",
+    "copado",
+    "agentia",
+    "release-updates",
+    "testing",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "@salesforce/core": "^5.3.1",
+    "@slack/web-api": "^6.9.0",
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
+    "inquirer": "^8.2.5",
+    "jsforce": "^1.11.1",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

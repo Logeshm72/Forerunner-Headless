@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Forerunner Headless - Bash Wrapper
+# Handles credential management and environment setup
+
+# Check if credentials are set
+check_credentials() {
+    local missing=0
+
+    if [ -z "$SF_USERNAME" ] && [ -z "$SALESFORCE_USERNAME" ]; then
+        echo "⚠️  Warning: SF_USERNAME not set (will use demo mode)"
+        missing=1
+    fi
+
+    if [ -z "$AGENTIA_WORKSPACE" ]; then
+        echo "⚠️  Warning: AGENTIA_WORKSPACE not set (will use demo mode)"
+        missing=1
+    fi
+
+    if [ -z "$COPADO_API_KEY" ]; then
+        echo "⚠️  Warning: COPADO_API_KEY not set (some features disabled)"
+        missing=1
+    fi
+
+    if [ $missing -eq 1 ]; then
+        echo ""
+        echo "💡 To set credentials, add to your ~/.zshrc or ~/.bashrc:"
+        echo "   export SF_USERNAME=your.email@company.com"
+        echo "   export AGENTIA_WORKSPACE=your-workspace-id"
+        echo "   export COPADO_API_KEY=your-api-key"
+        echo ""
+    fi
+}
+
+# Load .env if it exists (but environment variables take precedence)
+if [ -f "$(dirname "$0")/.env" ]; then
+    set -a
+    source "$(dirname "$0")/.env"
+    set +a
+fi
+
+# Show warnings only for non-help commands
+if [ "$1" != "help" ] && [ "$1" != "--help" ] && [ "$1" != "-h" ]; then
+    check_credentials
+fi
+
+# Execute the Node.js CLI
+exec node "$(dirname "$0")/forerunner-headless-cli.js" "$@"
