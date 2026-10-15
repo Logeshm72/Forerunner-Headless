@@ -8,7 +8,7 @@
  * - Claude Desktop
  * - Cursor IDE
  * - VS Code + Cline
- * - Any MCP-compatible client
+ * - Any MCP-compatible client 
  */
 
 const { Server } = require('@modelcontextprotocol/sdk/server/index.js');
